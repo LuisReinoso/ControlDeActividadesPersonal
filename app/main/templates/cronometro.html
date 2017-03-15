@@ -17,9 +17,7 @@
             Actividad
           </div>
             <select>
-              <option>Opcion 1</option>
-              <option selected>Opcion 2</option>
-              <option>Opcion 3</option>
+              <option ng-repeat="actividad in actividades">{{actividad.nombre}}</option>
             </select>
         </label>
 
@@ -28,9 +26,7 @@
             Estado de animo
           </div>
             <select>
-              <option>Opcion 1</option>
-              <option selected>Opcion 2</option>
-              <option>Opcion 3</option>
+              <option ng-repeat="estados in estadosDeAnimo">{{estados.nombre}}</option>
             </select>
         </label>
 
@@ -49,7 +45,8 @@
         </div>
 
         <div class="item">
-          <button class="button button-block button-large button-assertive">
+          <button class="button button-block button-large button-assertive"
+                  ng-if="isContando">
             Marcar
           </button>
         </div>
