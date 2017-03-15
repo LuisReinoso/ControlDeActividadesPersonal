@@ -17,4 +17,10 @@ describe('module: main, controller: CronometroCtrl', function () {
     expect(!!CronometroCtrl).toBe(true);
   });
 
+  // it('deberia iniciar el cronometro', function () {
+  //   CronometroCtrl.iniciar()
+  //   var estado = CronometroCtrl.estado();
+  //   expect(estado).toBe(true);
+  // });
+
 });

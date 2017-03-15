@@ -9,7 +9,7 @@
           Contador
         </div>
         <div class="item item-text-wrap">
-          {{"00:00:10"}}
+          {{horas}}:{{minutos}}:{{segundos}}
         </div>
 
         <label class="item item-input item-select">
@@ -35,11 +35,15 @@
         </label>
 
         <div class="item">
-          <button class="button button-block button-positive">
+          <button class="button button-block button-positive"
+                  ng-click="iniciar()"
+                  ng-if="!isContando">
             Iniciar
           </button>
 
-          <button class="button button-block button-royal">
+          <button class="button button-block button-royal"
+                  ng-click="pausar()"
+                  ng-if="isContando">
             Pausar
           </button>
         </div>
