@@ -1,0 +1,18 @@
+{
+  "generator-m-ionic": {
+    "answers": {
+      "appName": "Control de actividades",
+      "appId": "com.apc.controldeactividades",
+      "ionicCss": true,
+      "bowerPackages": [
+        "localforage#~1.4.0"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "plugins": [],
+      "appModule": "controlDeActividades",
+      "ecosystems": []
+    }
+  }
+}
