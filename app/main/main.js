@@ -43,5 +43,14 @@ angular.module('main', [
             controller: 'DebugCtrl as ctrl'
           }
         }
+      })
+      .state('main.cronometro', {
+        url: '/cronometro',
+        views: {
+          'pageContent': {
+            templateUrl: 'main/templates/cronometro.html',
+            controller: 'CronometroCtrl as ctrl'
+          }
+        }
       });
 });
