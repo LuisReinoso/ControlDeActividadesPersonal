@@ -60,13 +60,12 @@
                   ng-if="isContador && !isContando">
             Reiniciar
           </button>
-        </div>
-
-        <div class="item" ng-if="isContando || isContador">
           <button class="button button-block button-large button-assertive"
-                  ng-click="marcar()">
+                  ng-click="marcar()"
+                  ng-if="isContando || isContador">
             Marcar
           </button>
+
         </div>
 
         <div class="item item-divider">
