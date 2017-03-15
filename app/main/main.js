@@ -263,4 +263,34 @@ angular.module('main', [
       console.log(err);
     });
 
+
+    // Contador de Registros
+    localforage.getItem('contadorRegistros').then(function (value) {
+
+      if (!value) {
+        localforage.setItem('contadorRegistros', 0).then(function (value) {
+        }).catch(function(err) {
+          console.log(err);
+        });
+      }
+
+    }).catch(function(err) {
+    console.log(err);
+    });
+
+
+    // Registros
+    localforage.getItem('registros').then(function (value) {
+
+      if (!value) {
+        localforage.setItem('registros', []).then(function (value) {
+        }).catch(function(err) {
+          console.log(err);
+        });
+      }
+
+    }).catch(function(err) {
+    console.log(err);
+    });
+
   });

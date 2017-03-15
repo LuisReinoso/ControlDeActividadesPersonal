@@ -16,8 +16,11 @@
           <div class="input-label">
             Actividad
           </div>
-            <select>
-              <option ng-repeat="actividad in actividades">{{actividad.nombre}}</option>
+            <select ng-model="actividad"
+                    ng-options="actividad.nombre
+                                for actividad in actividades
+                                track by actividad.id"
+                    ng-change="selectorActividad(actividad)">
             </select>
         </label>
 
@@ -25,15 +28,18 @@
           <div class="input-label">
             Estado de animo
           </div>
-            <select>
-              <option ng-repeat="estados in estadosDeAnimo">{{estados.nombre}}</option>
+            <select ng-model="estadoDeAnimo"
+                    ng-options="estado.nombre
+                                for estado in estadosDeAnimo
+                                track by estado.id"
+                    ng-change="selectorEstadoDeAnimo(estadoDeAnimo)">
             </select>
         </label>
 
         <div class="item">
           <button class="button button-block button-positive"
                   ng-click="iniciar()"
-                  ng-if="!isContando">
+                  ng-if="!isContando && !isContador">
             Iniciar
           </button>
 
@@ -42,11 +48,23 @@
                   ng-if="isContando">
             Pausar
           </button>
+
+          <button class="button button-block button-royal"
+                  ng-click="iniciar()"
+                  ng-if="isContador && !isContando">
+            Reanudar
+          </button>
+
+          <button class="button button-block button-stable"
+                  ng-click="limpieza()"
+                  ng-if="isContador && !isContando">
+            Reiniciar
+          </button>
         </div>
 
-        <div class="item">
+        <div class="item" ng-if="isContando || isContador">
           <button class="button button-block button-large button-assertive"
-                  ng-if="isContando">
+                  ng-click="marcar()">
             Marcar
           </button>
         </div>
