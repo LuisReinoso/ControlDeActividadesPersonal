@@ -1,7 +1,7 @@
 'use strict';
 angular.module('main')
   .controller('CronometroCtrl', function($log, $scope, $interval, $ionicPopup,
-              PersistenciaRegistro) {
+              PersistenciaRegistro, $localStorage) {
 
     $log.log('Inicio controlador: CronometroCtrl en modulo main:.', this);
 
@@ -11,17 +11,13 @@ angular.module('main')
     $scope.isContando = false;
     $scope.isContador = false;
 
-    localforage.getItem('actividades').then(function(value) {
-      // TODO: ordenar por mayor uso
-      $scope.actividades = value;
-      $scope.actividad = $scope.actividades[0]; // default
-    });
+    // TODO: ordenar por mayor uso
+    $scope.actividades = $localStorage.actividades;
+    $scope.actividad = $localStorage.actividades[0]; //default
 
-    localforage.getItem('estadosDeAnimo').then(function(value) {
-      // TODO: ordenar por mayor uso
-      $scope.estadosDeAnimo = value;
-      $scope.estadoDeAnimo = $scope.estadosDeAnimo[0]; // default
-    });
+    // TODO: ordenar por mayor uso
+    $scope.estadosDeAnimo = $localStorage.estadosDeAnimo;
+    $scope.estadoDeAnimo = $localStorage.estadosDeAnimo[0]; //default
 
     // Funcion que aumenta cada segundo el contador
     function segundos() {
@@ -63,7 +59,8 @@ angular.module('main')
 
         $log.log('Guardando registro', this);
         PersistenciaRegistro.guardarRegistro($scope.actividad.id,
-        $scope.estadoDeAnimo.id, descripcion, new Date());
+        $scope.estadoDeAnimo.id, descripcion, new Date(),
+        $scope.horas, $scope.minutos, $scope.segundos);
         limpieza();
       });
     }

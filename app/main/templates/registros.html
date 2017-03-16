@@ -1,0 +1,29 @@
+<ion-view view-title="main module">
+  <!-- do you want padding? -->
+  <ion-content class="padding">
+
+    <!-- content goes here -->
+    <ion-list>
+      <div class="list card" ng-repeat="registro in registros">
+
+        <div class="item item-avatar">
+          <img src="mcfly.jpg">
+          <h2>{{registro.idActividad | nombreActividad }}</h2>
+          <p>{{registro.horas}}:{{registro.minutos}}:{{registro.segundos}}</p>
+        </div>
+
+        <div class="item item-body">
+          <p>
+            {{registro.descripcion}}
+            {{registro.idEstadoDeAnimo | nombreEstadoDeAnimo}}
+          </p>
+          <p>
+            {{registro.fecha | date:'short'}}
+          </p>
+        </div>
+
+      </div>
+    </ion-list>
+
+  </ion-content>
+</ion-view>

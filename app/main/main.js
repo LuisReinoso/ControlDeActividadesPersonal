@@ -3,7 +3,7 @@ angular.module('main', [
     'ionic',
     'ngCordova',
     'ui.router',
-    // TODO: load other modules selected during generation
+    'ngStorage',
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 
@@ -52,16 +52,23 @@ angular.module('main', [
             controller: 'CronometroCtrl as ctrl'
           }
         }
+      })
+      .state('main.registros', {
+        url: '/registros',
+        views: {
+          'pageContent': {
+            templateUrl: 'main/templates/registros.html',
+            controller: 'RegistrosCtrl as ctrl'
+          }
+        }
       });
   })
 
-  .run(function() {
+  .run(function($localStorage) {
 
     // Actividades
-    localforage.getItem('actividades').then(function(value) {
-      // Carga valores por default
-      if (!value) {
-        var actividades = [{
+    $localStorage.actividades = $localStorage.actividades ||
+          [{
             'id': 0,
             'nombre': 'Alimentacion',
             'imagen': 'img/alimentacion.png',
@@ -198,23 +205,9 @@ angular.module('main', [
           }
         ];
 
-        localforage.setItem('actividades', actividades).then(function(value) {
-          console.log(value);
-        }).catch(function(err) {
-          console.log(err);
-        });
-      }
-
-    }).catch(function(err) {
-      console.log(err);
-    });
-
-
     // Estados de animo
-    localforage.getItem('estadosDeAnimo').then(function(value) {
-      // Carga valores por default
-      if (!value) {
-        var estadosDeAnimo = [{
+    $localStorage.estadosDeAnimo = $localStorage.estadosDeAnimo ||
+          [{
             'id': 0,
             'nombre': 'Calma energia',
             'imagen': 'img/calmaEnergia.png',
@@ -252,45 +245,10 @@ angular.module('main', [
           }
         ];
 
-        localforage.setItem('estadosDeAnimo', estadosDeAnimo).then(function(value) {
-          console.log(value);
-        }).catch(function(err) {
-          console.log(err);
-        });
-      }
-
-    }).catch(function(err) {
-      console.log(err);
-    });
-
-
     // Contador de Registros
-    localforage.getItem('contadorRegistros').then(function (value) {
-
-      if (!value) {
-        localforage.setItem('contadorRegistros', 0).then(function (value) {
-        }).catch(function(err) {
-          console.log(err);
-        });
-      }
-
-    }).catch(function(err) {
-    console.log(err);
-    });
-
+    $localStorage.contadorRegistros = $localStorage.contadorRegistros || 0;
 
     // Registros
-    localforage.getItem('registros').then(function (value) {
-
-      if (!value) {
-        localforage.setItem('registros', []).then(function (value) {
-        }).catch(function(err) {
-          console.log(err);
-        });
-      }
-
-    }).catch(function(err) {
-    console.log(err);
-    });
+    $localStorage.registros = $localStorage.registros || [];
 
   });
