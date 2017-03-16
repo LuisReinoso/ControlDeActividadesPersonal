@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -22,9 +22,10 @@
     <link rel="stylesheet" href="main/styles/main.css">
     <!-- endinject -->
     <!-- endbuild -->
+
+
   </head>
   <body ng-app="controlDeActividades">
-
     <!-- the nav bar will be updated as we navigate between views -->
     <!-- <ion-nav-bar> can be removed when using sidemenu (contained in menu.html) -->
     <ion-nav-bar class="bar-energized">
@@ -49,11 +50,15 @@
     <!-- endbower -->
     <!-- endbuild -->
 
+    <script src="/bower_components/angular-i18n/angular-locale_es-ec.js"></script>
+
     <!-- build:js scripts/app.js -->
     <!-- inject:js -->
     <script src="main/main.js"></script>
     <script src="main/services/persistencia-registro-serv.js"></script>
     <script src="main/services/main-serv.js"></script>
+    <script src="main/filters/nombre-icono-estado-fil.js"></script>
+    <script src="main/filters/nombre-icono-actividad-fil.js"></script>
     <script src="main/filters/nombre-estado-de-animo-fil.js"></script>
     <script src="main/filters/nombre-actividad-fil.js"></script>
     <script src="main/controllers/registros-ctrl.js"></script>

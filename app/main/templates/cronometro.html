@@ -5,15 +5,14 @@
     <!-- content goes here -->
       <div class="card">
         <div class="item item-divider">
-          Contador
         </div>
-        <div class="item item-text-wrap">
+        <div class="item item-text-wrap cronometro">
           {{horas}}:{{minutos}}:{{segundos}}
         </div>
 
         <label class="item item-input item-select">
           <div class="input-label">
-            Actividad
+            <i class="icon {{actividad.icono}}"></i>
           </div>
             <select ng-model="actividad"
                     ng-options="actividad.nombre
@@ -25,7 +24,7 @@
 
         <label class="item item-input item-select">
           <div class="input-label">
-            Estado de animo
+            <i class="icon {{estadoDeAnimo.icono}}"></i>
           </div>
             <select ng-model="estadoDeAnimo"
                     ng-options="estado.nombre

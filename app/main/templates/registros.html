@@ -1,4 +1,4 @@
-<ion-view view-title="main module">
+<ion-view view-title="Registro">
   <!-- do you want padding? -->
   <ion-content class="padding">
 
@@ -6,20 +6,18 @@
     <ion-list>
       <div class="list card" ng-repeat="registro in registros">
 
-        <div class="item item-avatar">
-          <img src="mcfly.jpg">
+        <div class="item item-divider item-icon-left item-icon-right">
+          <i class="icon {{registro.idActividad | nombreIconoActividad }}"></i>
           <h2>{{registro.idActividad | nombreActividad }}</h2>
           <p>{{registro.horas}}:{{registro.minutos}}:{{registro.segundos}}</p>
+          <i class="icon {{registro.idEstadoDeAnimo | nombreIconoEstado }}"></i>
         </div>
 
-        <div class="item item-body">
-          <p>
+        <div class="item-body">
+          <div ng-if="registro.descripcion">
             {{registro.descripcion}}
-            {{registro.idEstadoDeAnimo | nombreEstadoDeAnimo}}
-          </p>
-          <p>
-            {{registro.fecha | date:'short'}}
-          </p>
+          </div>
+            <a href="#" class="subdued">{{registro.fecha | date:'medium'}}</a>
         </div>
 
       </div>
