@@ -1,0 +1,24 @@
+<ion-view view-title="Resumen">
+  <ion-content>
+
+    <ion-item class="item item-text-wrap">
+      Hola, este es el resumen de tus actividades
+    </ion-item>
+
+    <!-- content goes here -->
+    <ion-list>
+
+      <ion-item class="item item-divider">
+        Actividades
+      </ion-item>
+      <ion-item class="item">
+        <canvas id="radar" class="chart chart-radar"
+          chart-data="dataFrecuenciasActividad" chart-options="options"
+          chart-labels="labelsActividad">
+        </canvas>
+      </ion-item>
+      <!-- ui-sref="main.listDetail"> -->
+
+    </ion-list>
+  </ion-content>
+</ion-view>

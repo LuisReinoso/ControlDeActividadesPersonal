@@ -4,7 +4,7 @@
 
     <!-- content goes here -->
     <ion-list>
-      <div class="list card" ng-repeat="registro in registros">
+      <ion-item class="list card item-toggle-option" ng-repeat="registro in registros">
 
         <div class="item item-divider item-icon-left item-icon-right">
           <i class="icon {{registro.idActividad | nombreIconoActividad }}"></i>
@@ -20,7 +20,12 @@
             <a href="#" class="subdued">{{registro.fecha | date:'medium'}}</a>
         </div>
 
-      </div>
+        <ion-option-button class="button-info"
+                           ng-click="eliminarRegistro($index)">
+          Borrar
+        </ion-option-button>
+
+      </ion-item>
     </ion-list>
 
   </ion-content>

@@ -3,3 +3,15 @@
   font-weight: bold;
   text-align: center;
 }
+
+.item-content {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 12px;
+}
+
+.item-options {
+    position: absolute;
+    right: -5px;
+}

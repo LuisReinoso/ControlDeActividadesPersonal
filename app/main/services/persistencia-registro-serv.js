@@ -165,7 +165,7 @@ angular.module('main')
       ...
       diciembre: 11
     **/
-    this.generarFrecuenciasActividadMes = function (fecha) {
+    this.generarFrecuenciasActividadMes = function(fecha) {
 
       var mes = fecha.getMonth();
       $localStorage.frecuenciasActividadesMes[mes] =
@@ -173,5 +173,86 @@ angular.module('main')
 
     }
 
+    /**
+      Elimnar registro y sus estadisticas
+    **/
+    this.eliminarRegistro = function(indiceRegistro) {
+
+      var registro = $localStorage.registros[indiceRegistro];
+      var actividad = $localStorage.actividades[registro.idActividad];
+      var estadoDeAnimo = $localStorage.estadosDeAnimo[registro.idEstadoDeAnimo];
+
+      // Elimina contador de actividad
+      $localStorage.actividades[registro.idActividad].contador =
+      $localStorage.actividades[registro.idActividad].contador - 1;
+
+        //Frecuencia actividad
+      var indiceActividad = $localStorage.etiquetasActividades.indexOf(actividad.nombre);
+      $localStorage.frecuenciasActividades[indiceActividad] =
+      $localStorage.frecuenciasActividades[indiceActividad] - 1;
+
+        //Frecuencia actividad mes
+      $localStorage.frecuenciasActividadesMes[registro.fecha.getMonth()] =
+      $localStorage.frecuenciasActividadesMes[registro.fecha.getMonth()] - 1;
+
+        //Frecuencia actividad semana
+      $localStorage.frecuenciasActividadesSemana[registro.fecha.getDay()] =
+      $localStorage.frecuenciasActividadesSemana[registro.fecha.getDay()] - 1;
+
+      // Elimina tiempo dedicado a actividad
+      var segundosActividad = this.conversorTiempoASegundos(actividad.horas,
+      actividad.minutos, actividad.segundos);
+
+      var segundosRegistro = this.conversorTiempoASegundos(registro.horas,
+      registro.minutos, registro.segundos);
+
+      var tiempoActividad = this.conversorSegundosATiempo(segundosActividad - segundosRegistro);
+
+      $localStorage.actividades[registro.idActividad].horas = tiempoActividad[0];
+      $localStorage.actividades[registro.idActividad].minutos = tiempoActividad[1];
+      $localStorage.actividades[registro.idActividad].segundos = tiempoActividad[2];
+
+        // Frecuencia horas
+      $localStorage.frecuenciasTiempoHoras[indiceActividad] = tiempoActividad[0];
+
+        //Frecuencias minutos
+      $localStorage.frecuenciasTiempoMinutos[indiceActividad] =
+      tiempoActividad[0] * 60 + tiempoActividad[1];
+
+      // Elimina contador de estado de animo
+      $localStorage.estadosDeAnimo[registro.idEstadoDeAnimo].contador =
+      $localStorage.estadosDeAnimo[registro.idEstadoDeAnimo].contador - 1;
+
+        //Frecuencia actividad
+      var indiceEstadoDeAnimo = $localStorage.etiquetasEstadosDeAnimo.indexOf(estadoDeAnimo.nombre);
+      $localStorage.frecuenciasEstadosDeAnimo[indiceEstadoDeAnimo] =
+      $localStorage.frecuenciasEstadosDeAnimo[indiceEstadoDeAnimo] - 1;
+
+      // Elimina tiempo dedicado a un estado DeAnimo
+      var segundosEstadoDeAnimo = this.conversorTiempoASegundos(estadoDeAnimo.horas,
+      estadoDeAnimo.minutos, estadoDeAnimo.segundos);
+
+      var tiempoActividad = this.conversorSegundosATiempo(segundosEstadoDeAnimo - segundosRegistro);
+
+      $localStorage.estadosDeAnimo[registro.idEstadoDeAnimo].horas = tiempoActividad[0];
+      $localStorage.estadosDeAnimo[registro.idEstadoDeAnimo].minutos = tiempoActividad[1];
+      $localStorage.estadosDeAnimo[registro.idEstadoDeAnimo].segundos = tiempoActividad[2];
+
+      // Elimina del registro
+      $localStorage.registros.splice(indiceRegistro,1);
+    }
+
+    this.conversorTiempoASegundos = function(horas, minutos, segundos) {
+      var tiempo = horas * 3600 + minutos * 60 + segundos;
+      return tiempo;
+    }
+
+    this.conversorSegundosATiempo = function(segundos) {
+      var segundosTiempo = segundos % 60;
+      var minutos = (segundos - segundosTiempo) / 60;
+      var minutosTiempo = minutos % 60;
+      var horasTiempo = (minutos - minutosTiempo) / 60;
+      return [horasTiempo, minutosTiempo, segundosTiempo];
+    }
 
   });
