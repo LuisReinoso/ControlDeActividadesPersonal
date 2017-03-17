@@ -30,6 +30,10 @@ angular.module('main')
       this.addTiempoActividad(idActividad, segundos, minutos, horas)
       $localStorage.actividades[idActividad].contador = $localStorage.actividades[idActividad].contador + 1;
 
+      // Actualizar estado de animo
+      this.addTiempoAnimo(idEstadoDeAnimo, segundos, minutos, horas)
+      $localStorage.estadosDeAnimo[idEstadoDeAnimo].contador = $localStorage.estadosDeAnimo[idEstadoDeAnimo].contador + 1;
+
       // Agregar a registros
       $localStorage.registros.push(registro);
       $localStorage.contadorRegistros = contadorRegistros;
@@ -56,6 +60,26 @@ angular.module('main')
     }
 
     /**
+      Realiza la actualizacion de las horas minutos y segundos de la estado de animo
+    **/
+    this.addTiempoAnimo = function (idEstadoDeAnimo, segundos, minutos, horas) {
+      $localStorage.estadosDeAnimo[idEstadoDeAnimo].segundos = $localStorage.estadosDeAnimo[idEstadoDeAnimo].segundos + segundos;
+      if ($localStorage.estadosDeAnimo[idEstadoDeAnimo].segundos >= 60) {
+        $localStorage.estadosDeAnimo[idEstadoDeAnimo].segundos = $localStorage.estadosDeAnimo[idEstadoDeAnimo].segundos - 60;
+        $localStorage.estadosDeAnimo[idEstadoDeAnimo].minutos = $localStorage.estadosDeAnimo[idEstadoDeAnimo].minutos + 1;
+      }
+
+      $localStorage.estadosDeAnimo[idEstadoDeAnimo].minutos = $localStorage.estadosDeAnimo[idEstadoDeAnimo].minutos + minutos;
+
+      if ($localStorage.estadosDeAnimo[idEstadoDeAnimo].minutos >= 60) {
+        $localStorage.estadosDeAnimo[idEstadoDeAnimo].minutos = $localStorage.estadosDeAnimo[idEstadoDeAnimo].minutos - 60;
+        $localStorage.estadosDeAnimo[idEstadoDeAnimo].horas = $localStorage.estadosDeAnimo[idEstadoDeAnimo].horas + 1;
+      }
+
+      $localStorage.estadosDeAnimo[idEstadoDeAnimo].horas = $localStorage.estadosDeAnimo[idEstadoDeAnimo].horas + horas;
+    }
+
+    /**
       Generar frecuencia
     **/
     this.generarFrecuencia = function(idActividad) {
@@ -69,6 +93,17 @@ angular.module('main')
       } else {
         $localStorage.frecuenciasActividades[indice] = $localStorage.frecuenciasActividades[indice] + 1;
       }
+    }
+
+    /**
+      Generar frecuencia
+    **/
+    this.generarFrecuenciaEstadosDeAnimo = function(idEstadoDeAnimo) {
+
+      var nombreEstado = $localStorage.estadosDeAnimo[idEstadoDeAnimo].nombre;
+      var indice = $localStorage.etiquetasEstadosDeAnimo.indexOf(nombreEstado);
+
+      $localStorage.frecuenciasEstadosDeAnimo[indice] = $localStorage.frecuenciasEstadosDeAnimo[indice] + 1;
     }
 
     /**

@@ -17,4 +17,7 @@ angular.module('main')
   $scope.labelsMes = $localStorage.etiquetasMes;
   $scope.dataFrecuenciasActividadMes = $localStorage.frecuenciasActividadesMes;
 
+  $scope.labelsEstadosDeAnimo = $localStorage.etiquetasEstadosDeAnimo;
+  $scope.dataFrecuenciasEstadosDeAnimo = $localStorage.frecuenciasEstadosDeAnimo;
+
 });

@@ -306,6 +306,14 @@ angular.module('main', [
     // Frecuencia actividades
     $localStorage.frecuenciasActividades = $localStorage.frecuenciasActividades || [];
 
+    // Etiquetas estados de animo
+    $localStorage.etiquetasEstadosDeAnimo = $localStorage.etiquetasEstadosDeAnimo ||
+      ['Calma energia', 'Calma cansancio', 'Tension energía', 'Tension cansancio'];
+
+    // Frecuencia actividades
+    $localStorage.frecuenciasEstadosDeAnimo = $localStorage.frecuenciasEstadosDeAnimo ||
+      [0, 0, 0, 0];
+
     // Frecuencia tiempo horas
     $localStorage.frecuenciasTiempoHoras = $localStorage.frecuenciasTiempoHoras || [];
 

@@ -66,6 +66,7 @@ angular.module('main')
 
         // Estadistica
         PersistenciaRegistro.generarFrecuencia($scope.actividad.id);
+        PersistenciaRegistro.generarFrecuenciaEstadosDeAnimo($scope.estadoDeAnimo.id);
         PersistenciaRegistro.generarTiempoHoras($scope.actividad.id);
         PersistenciaRegistro.generarTiempoMinutos($scope.actividad.id);
         PersistenciaRegistro.generarFrecuenciasActividadSemana(fecha);
