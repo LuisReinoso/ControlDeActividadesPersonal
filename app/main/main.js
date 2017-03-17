@@ -4,6 +4,7 @@ angular.module('main', [
     'ngCordova',
     'ui.router',
     'ngStorage',
+    'chart.js'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 
@@ -59,6 +60,15 @@ angular.module('main', [
           'pageContent': {
             templateUrl: 'main/templates/registros.html',
             controller: 'RegistrosCtrl as ctrl'
+          }
+        }
+      })
+      .state('main.estadisticas', {
+        url: '/estadisticas',
+        views: {
+          'pageContent': {
+            templateUrl: 'main/templates/estadisticas.html',
+            controller: 'EstadisticasCtrl as ctrl'
           }
         }
       });
@@ -289,4 +299,34 @@ angular.module('main', [
 
     // Registros
     $localStorage.registros = $localStorage.registros || [];
+
+    // Etiquetas actividades
+    $localStorage.etiquetasActividades = $localStorage.etiquetasActividades || [];
+
+    // Frecuencia actividades
+    $localStorage.frecuenciasActividades = $localStorage.frecuenciasActividades || [];
+
+    // Frecuencia tiempo horas
+    $localStorage.frecuenciasTiempoHoras = $localStorage.frecuenciasTiempoHoras || [];
+
+    // Frecuencia tiempo minutos
+    $localStorage.frecuenciasTiempoMinutos = $localStorage.frecuenciasTiempoMinutos || [];
+
+    // Dias de la semana
+    $localStorage.etiquetasSemana = $localStorage.etiquetasSemana ||
+      ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
+
+    // Dias de la semana
+    $localStorage.frecuenciasActividadesSemana = $localStorage.frecuenciasActividadesSemana ||
+      [0, 0, 0, 0, 0, 0, 0];
+
+    // Nombre de la meses
+    $localStorage.etiquetasMes = $localStorage.etiquetasMes ||
+      ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto',
+      'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+    // Dias de la semana
+    $localStorage.frecuenciasActividadesMes = $localStorage.frecuenciasActividadesMes ||
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
   });

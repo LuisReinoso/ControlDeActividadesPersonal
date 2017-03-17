@@ -1,0 +1,57 @@
+<ion-view view-title="Estadisticas">
+  <!-- do you want padding? -->
+  <ion-content class="padding">
+
+    <!-- content goes here -->
+    <ion-list>
+
+      <ion-item class="item item-divider">
+        Frecuencia actividades
+      </ion-item>
+      <ion-item class="item">
+        <canvas id="radar" class="chart chart-radar"
+          chart-data="dataFrecuenciasActividad" chart-options="options"
+          chart-labels="labelsActividad">
+        </canvas>
+      </ion-item>
+
+      <ion-item class="item item-divider">
+        Actividades por hora
+      </ion-item>
+      <ion-item class="item">
+        <canvas id="base" class="chart-horizontal-bar"
+          chart-data="dataTiempoHorasActividad" chart-labels="labelsActividad">
+        </canvas>
+      </ion-item>
+
+      <ion-item class="item item-divider">
+        Actividades por minuto
+      </ion-item>
+      <ion-item class="item">
+        <canvas id="base" class="chart-horizontal-bar"
+          chart-data="dataTiempoMinutosActividad" chart-labels="labelsActividad">
+        </canvas>
+      </ion-item>
+
+      <ion-item class="item item-divider">
+        Frecuencia actividades por dia
+      </ion-item>
+      <ion-item class="item">
+        <canvas id="bar" class="chart chart-bar"
+          chart-data="dataFrecuenciasActividadSemana" chart-labels="labelsSemana"> chart-series="series"
+        </canvas>
+      </ion-item>
+
+      <ion-item class="item item-divider">
+        Frecuencia actividades por mes
+      </ion-item>
+      <ion-item class="item">
+        <canvas id="bar" class="chart chart-bar"
+          chart-data="dataFrecuenciasActividadMes" chart-labels="labelsMes"> chart-series="series"
+        </canvas>
+      </ion-item>
+
+    </ion-list>
+
+  </ion-content>
+</ion-view>

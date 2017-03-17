@@ -7,7 +7,9 @@
     "angular-ui-router": "~0.3.1",
     "ngCordova": "~0.1.17-alpha",
     "ngstorage": "^0.3.11",
-    "angular-i18n": "^1.6.3"
+    "angular-i18n": "^1.6.3",
+    "Ionicons": "ionicons#^2.0.1",
+    "angular-chart.js": "^1.1.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.0"

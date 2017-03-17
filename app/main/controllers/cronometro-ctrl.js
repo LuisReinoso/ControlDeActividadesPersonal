@@ -57,11 +57,19 @@ angular.module('main')
         inputType: 'text'
       }).then(function (descripcion) {
 
+        var fecha = new Date();
         $log.log('Guardando registro', this);
         PersistenciaRegistro.guardarRegistro($scope.actividad.id,
-        $scope.estadoDeAnimo.id, descripcion, new Date(),
+        $scope.estadoDeAnimo.id, descripcion, fecha,
         $scope.horas, $scope.minutos, $scope.segundos);
         limpieza();
+
+        // Estadistica
+        PersistenciaRegistro.generarFrecuencia($scope.actividad.id);
+        PersistenciaRegistro.generarTiempoHoras($scope.actividad.id);
+        PersistenciaRegistro.generarTiempoMinutos($scope.actividad.id);
+        PersistenciaRegistro.generarFrecuenciasActividadSemana(fecha);
+        PersistenciaRegistro.generarFrecuenciasActividadMes(fecha);
       });
     }
 
