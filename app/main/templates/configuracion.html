@@ -22,5 +22,29 @@
 
     </ion-list>
 
+    <h1>Datos</h1>
+
+    <ion-list class="list">
+      <p class="item item-divider item-text-wrap">
+        Descarga registros al archivo registros.txt
+      </p>
+      <ion-item ng-click="exportar()">
+          Exportar
+      </ion-item>
+      <p class="item item-divider item-text-wrap">
+        Realizar limpieza y cargar registros desde archivo registros.txt
+      </p>
+      <ion-item ng-click="importar()">
+          Importar
+      </ion-item>
+      <p class="item item-divider item-text-wrap">
+        Eliminar todos los datos y registros de la aplicacion
+      </p>
+      <ion-item ng-click="limpieza()" class="item assertive-bg">
+          Limpieza
+      </ion-item>
+
+    </ion-list>
+
   </ion-content>
 </ion-view>
