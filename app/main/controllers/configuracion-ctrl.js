@@ -57,10 +57,9 @@ angular.module('main')
 
         $scope.limpieza();
         registros = angular.fromJson(success);
-        alert(registros.length);
 
         for (var i = 0; i < registros.length; i++) {
-          alert(registros[i]);
+
           PersistenciaRegistro.guardarRegistro(registros[i].idActividad,
           registros[i].idEstadoDeAnimo, registros[i].descripcion,
             registros[i].fecha, registros[i].horas, registros[i].minutos,
@@ -74,7 +73,6 @@ angular.module('main')
           PersistenciaRegistro.generarFrecuenciasActividadSemana(new Date(registros[i].fecha));
           PersistenciaRegistro.generarFrecuenciasActividadMes(new Date(registros[i].fecha));
 
-          alert("fin iterador"+i);
         }
 
         $ionicPopup.alert({
@@ -333,7 +331,7 @@ angular.module('main')
 
       $ionicPopup.alert({
           title: 'Limpieza',
-          template: 'Se a eliminado los datos almacenados con exito.'
+          template: 'Se han eliminado los datos almacenados con exito.'
         });
       }, function (error) {
       $ionicPopup.alert({

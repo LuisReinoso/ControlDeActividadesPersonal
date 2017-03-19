@@ -178,9 +178,22 @@ angular.module('main')
     **/
     this.eliminarRegistro = function(indiceRegistro) {
 
-      var registro = $localStorage.registros[indiceRegistro];
+      var registro;
+      var indice;
+      var registros = $localStorage.registros;
+
+      for (var i = 0; i < registros.length; i++) {
+
+          if (registros[i].id == indiceRegistro) {
+              registro = registros[i];
+              indice = i;
+              break;
+          }
+      }
+
       var actividad = $localStorage.actividades[registro.idActividad];
       var estadoDeAnimo = $localStorage.estadosDeAnimo[registro.idEstadoDeAnimo];
+      var fecha = new Date(registro.fecha);
 
       // Elimina contador de actividad
       $localStorage.actividades[registro.idActividad].contador =
@@ -192,12 +205,12 @@ angular.module('main')
       $localStorage.frecuenciasActividades[indiceActividad] - 1;
 
         //Frecuencia actividad mes
-      $localStorage.frecuenciasActividadesMes[registro.fecha.getMonth()] =
-      $localStorage.frecuenciasActividadesMes[registro.fecha.getMonth()] - 1;
+      $localStorage.frecuenciasActividadesMes[fecha.getMonth()] =
+      $localStorage.frecuenciasActividadesMes[fecha.getMonth()] - 1;
 
         //Frecuencia actividad semana
-      $localStorage.frecuenciasActividadesSemana[registro.fecha.getDay()] =
-      $localStorage.frecuenciasActividadesSemana[registro.fecha.getDay()] - 1;
+      $localStorage.frecuenciasActividadesSemana[fecha.getDay()] =
+      $localStorage.frecuenciasActividadesSemana[fecha.getDay()] - 1;
 
       // Elimina tiempo dedicado a actividad
       var segundosActividad = this.conversorTiempoASegundos(actividad.horas,
@@ -239,7 +252,7 @@ angular.module('main')
       $localStorage.estadosDeAnimo[registro.idEstadoDeAnimo].segundos = tiempoActividad[2];
 
       // Elimina del registro
-      $localStorage.registros.splice(indiceRegistro,1);
+      $localStorage.registros.splice(indice,1);
     }
 
     this.conversorTiempoASegundos = function(horas, minutos, segundos) {
