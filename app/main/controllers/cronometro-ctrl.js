@@ -1,7 +1,7 @@
 'use strict';
 angular.module('main')
   .controller('CronometroCtrl', function($log, $scope, $interval, $ionicPopup,
-              PersistenciaRegistro, $localStorage) {
+              PersistenciaRegistro, $localStorage, $cordovaLocalNotification) {
 
     $log.log('Inicio controlador: CronometroCtrl en modulo main:.', this);
 
@@ -25,7 +25,33 @@ angular.module('main')
       if ($scope.segundos == 60) {
         $scope.segundos = 0;
         $scope.minutos = $scope.minutos + 1;
+
+        // Recordatorio
+        if ($localStorage.recordatorio && $scope.minutos == 30) {
+           var ahora = new Date().getTime();
+           $cordovaLocalNotification.schedule({
+             id: 1,
+             title: 'Recordatorio',
+             text: 'Han transcurrido 30 minutos',
+             at: ahora
+           }).then(function (resultado) {
+           });
+        }
+
         if ($scope.minutos == 60) {
+
+          // Recordatorio
+          if ($localStorage.recordatorio && $scope.minutos == 60) {
+             var ahora = new Date().getTime();
+             $cordovaLocalNotification.schedule({
+               id: 1,
+               title: 'Recordatorio',
+               text: 'Han transcurrido 30 minutos',
+               at: ahora
+             }).then(function (resultado) {
+             });
+          }
+
           $scope.minutos = 0;
           $scope.horas = $scope.horas + 1;
         }
@@ -37,12 +63,34 @@ angular.module('main')
       $scope.conteo = $interval(segundos, 1000);
       $scope.isContando = true;
       $scope.isContador = true;
+      cordova.plugins.backgroundMode.enable();
+      cordova.plugins.backgroundMode.setDefaults({
+        title: "Control de tareas",
+        text: "Cronometro activado",
+        icon: 'icon'
+        });
+      $localStorage.contando = $scope.isContando;
+      if ($localStorage.activame) {
+        $cordovaLocalNotification.cancel(2).then(function (resultado) {
+        });
+      }
     };
 
     // Detiene el cronometro
     $scope.pausar = function() {
       $interval.cancel($scope.conteo);
       $scope.isContando = false;
+      cordova.plugins.backgroundMode.disable();
+      $localStorage.contando = $scope.isContando;
+      if ($localStorage.activame) {
+        $cordovaLocalNotification.schedule({
+          id: 2,
+          title: 'Actívame!',
+          text: 'Realiza una actividad',
+          every: 60
+        }).then(function (resultado) {
+        });
+      }
     }
 
     // Marcar actividad

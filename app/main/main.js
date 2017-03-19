@@ -53,6 +53,15 @@ angular.module('main', [
             controller: 'EstadisticasCtrl as ctrl'
           }
         }
+      })
+      .state('main.configuracion', {
+        url: '/configuracion',
+        views: {
+          'pageContent': {
+            templateUrl: 'main/templates/configuracion.html',
+            controller: 'ConfiguracionCtrl as ctrl'
+          }
+        }
       });
   })
 
@@ -318,5 +327,10 @@ angular.module('main', [
     // Dias de la semana
     $localStorage.frecuenciasActividadesMes = $localStorage.frecuenciasActividadesMes ||
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    // Configuracion
+    $localStorage.recordatorio = $localStorage.recordatorio || false;
+    $localStorage.activame = $localStorage.activame || false;
+    $localStorage.contando = $localStorage.contando || false;
 
   });

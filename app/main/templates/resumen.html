@@ -13,12 +13,18 @@
       </ion-item>
       <ion-item class="item">
         <canvas id="radar" class="chart chart-radar"
-          chart-data="dataFrecuenciasActividad" chart-options="options"
+          chart-data="dataFrecuenciasActividad"
           chart-labels="labelsActividad">
         </canvas>
       </ion-item>
       <!-- ui-sref="main.listDetail"> -->
 
+      <ion-item>
+        {{dataFrecuenciasActividad}}
+      </ion-item>
+      <ion-item>
+        {{labelsActividad}}
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>

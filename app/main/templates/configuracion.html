@@ -1,0 +1,26 @@
+<ion-view view-title="Configuracion">
+  <!-- do you want padding? -->
+  <ion-content class="padding">
+    <!-- content goes here -->
+    <h1>Notificaciones</h1>
+
+    <ion-list class="list">
+
+        <p class="item item-divider item-text-wrap">
+          Cada media hora envia una notificacion cuando se encuentra
+          activado el cronometro.
+        </p>
+        <ion-toggle ng-model=recordatorio30
+                    ng-change="cambioRecordatorio30(recordatorio30)">30 minutos</ion-toggle>
+
+        <p class="item item-divider item-text-wrap">
+          Cada hora envia una notificacion cuando se encuentra
+          desactivado el cronometro.
+        </p>
+        <ion-toggle ng-model=recordatorioActivame
+                    ng-change="cambioRecordatorioActivame(recordatorioActivame)">Actívame!</ion-toggle>
+
+    </ion-list>
+
+  </ion-content>
+</ion-view>

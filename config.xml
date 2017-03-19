@@ -24,4 +24,6 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <engine name="android" spec="~6.0.0" />
+    <plugin name="de.appplant.cordova.plugin.local-notification" spec="~0.8.2dev" />
+    <plugin name="cordova-plugin-background-mode" spec="~0.7.2" />
 </widget>
