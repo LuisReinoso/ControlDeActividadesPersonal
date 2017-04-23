@@ -13,6 +13,9 @@
 # ionic fonts
 /app/main/assets/fonts/ionicons.*
 
+#res
+/res/*
+
 # cordova
 /platforms/
 /plugins/
