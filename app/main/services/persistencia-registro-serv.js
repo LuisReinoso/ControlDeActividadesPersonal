@@ -1,7 +1,6 @@
 'use strict';
 angular.module('main')
-  .service('PersistenciaRegistro', function($log, $localStorage) {
-
+  .service('PersistenciaRegistro', function ($log, $localStorage) {
     $log.log('Service: PersistenciaRegistro en modulo main');
 
     var contadorRegistros;
@@ -9,12 +8,11 @@ angular.module('main')
     /**
         Almacena un nuevo registro
     **/
-    this.guardarRegistro = function(idActividad, idEstadoDeAnimo, descripcion,
+    this.guardarRegistro = function (idActividad, idEstadoDeAnimo, descripcion,
       fecha, horas, minutos, segundos) {
-
       contadorRegistros = $localStorage.contadorRegistros + 1;
 
-      //Nuevo registro
+      // Nuevo registro
       var registro = {
         'id': contadorRegistros,
         'idActividad': idActividad,
@@ -24,20 +22,20 @@ angular.module('main')
         'horas': horas,
         'minutos': minutos,
         'segundos': segundos
-      }
+      };
 
       // Actualiza actividad
-      this.addTiempoActividad(idActividad, segundos, minutos, horas)
+      this.addTiempoActividad(idActividad, segundos, minutos, horas);
       $localStorage.actividades[idActividad].contador = $localStorage.actividades[idActividad].contador + 1;
 
       // Actualizar estado de animo
-      this.addTiempoAnimo(idEstadoDeAnimo, segundos, minutos, horas)
+      this.addTiempoAnimo(idEstadoDeAnimo, segundos, minutos, horas);
       $localStorage.estadosDeAnimo[idEstadoDeAnimo].contador = $localStorage.estadosDeAnimo[idEstadoDeAnimo].contador + 1;
 
       // Agregar a registros
       $localStorage.registros.push(registro);
       $localStorage.contadorRegistros = contadorRegistros;
-    }
+    };
 
     /**
       Realiza la actualizacion de las horas minutos y segundos de la actividad
@@ -57,7 +55,7 @@ angular.module('main')
       }
 
       $localStorage.actividades[idActividad].horas = $localStorage.actividades[idActividad].horas + horas;
-    }
+    };
 
     /**
       Realiza la actualizacion de las horas minutos y segundos de la estado de animo
@@ -77,57 +75,53 @@ angular.module('main')
       }
 
       $localStorage.estadosDeAnimo[idEstadoDeAnimo].horas = $localStorage.estadosDeAnimo[idEstadoDeAnimo].horas + horas;
-    }
+    };
 
     /**
       Generar frecuencia
     **/
-    this.generarFrecuencia = function(idActividad) {
-
+    this.generarFrecuencia = function (idActividad) {
       var nombreActividad = $localStorage.actividades[idActividad].nombre;
       var indice = $localStorage.etiquetasActividades.indexOf(nombreActividad);
 
-      if (indice == -1) {
+      if (indice === -1) {
         $localStorage.etiquetasActividades.push(nombreActividad);
         $localStorage.frecuenciasActividades.push(1);
       } else {
         $localStorage.frecuenciasActividades[indice] = $localStorage.frecuenciasActividades[indice] + 1;
       }
-    }
+    };
 
     /**
       Generar frecuencia
     **/
-    this.generarFrecuenciaEstadosDeAnimo = function(idEstadoDeAnimo) {
-
+    this.generarFrecuenciaEstadosDeAnimo = function (idEstadoDeAnimo) {
       var nombreEstado = $localStorage.estadosDeAnimo[idEstadoDeAnimo].nombre;
       var indice = $localStorage.etiquetasEstadosDeAnimo.indexOf(nombreEstado);
 
       $localStorage.frecuenciasEstadosDeAnimo[indice] = $localStorage.frecuenciasEstadosDeAnimo[indice] + 1;
-    }
+    };
 
     /**
       Genera tiempo en horas
     **/
-    this.generarTiempoHoras = function(idActividad) {
-
+    this.generarTiempoHoras = function (idActividad) {
       var nombreActividad = $localStorage.actividades[idActividad].nombre;
       var horasActividad = $localStorage.actividades[idActividad].horas;
 
       var indice = $localStorage.etiquetasActividades.indexOf(nombreActividad);
 
-      if ($localStorage.frecuenciasTiempoHoras[indice] == undefined) {
+      if ($localStorage.frecuenciasTiempoHoras[indice] === undefined) {
         $localStorage.frecuenciasTiempoHoras.push(horasActividad);
       } else {
         $localStorage.frecuenciasTiempoHoras[indice] = horasActividad;
       }
-    }
+    };
 
     /**
       Genera tiempo en minutos
     **/
-    this.generarTiempoMinutos = function(idActividad) {
-
+    this.generarTiempoMinutos = function (idActividad) {
       var nombreActividad = $localStorage.actividades[idActividad].nombre;
       var horasActividad = $localStorage.actividades[idActividad].horas;
       var minutosActividad = $localStorage.actividades[idActividad].minutos;
@@ -136,12 +130,12 @@ angular.module('main')
 
       var indice = $localStorage.etiquetasActividades.indexOf(nombreActividad);
 
-      if ($localStorage.frecuenciasTiempoMinutos[indice] == undefined) {
+      if ($localStorage.frecuenciasTiempoMinutos[indice] === undefined) {
         $localStorage.frecuenciasTiempoMinutos.push(minutosActividad);
       } else {
         $localStorage.frecuenciasTiempoMinutos[indice] = minutosActividad;
       }
-    }
+    };
 
     /**
       Generar actividades por dia de la semana
@@ -151,12 +145,10 @@ angular.module('main')
       Sabado: 6
     **/
     this.generarFrecuenciasActividadSemana = function (fecha) {
-
       var diaDeLaSemana = fecha.getDay();
       $localStorage.frecuenciasActividadesSemana[diaDeLaSemana] =
       $localStorage.frecuenciasActividadesSemana[diaDeLaSemana] + 1;
-
-    }
+    };
 
     /**
       Generar actividades por mes
@@ -165,30 +157,26 @@ angular.module('main')
       ...
       diciembre: 11
     **/
-    this.generarFrecuenciasActividadMes = function(fecha) {
-
+    this.generarFrecuenciasActividadMes = function (fecha) {
       var mes = fecha.getMonth();
       $localStorage.frecuenciasActividadesMes[mes] =
       $localStorage.frecuenciasActividadesMes[mes] + 1;
-
-    }
+    };
 
     /**
       Elimnar registro y sus estadisticas
     **/
-    this.eliminarRegistro = function(indiceRegistro) {
-
+    this.eliminarRegistro = function (indiceRegistro) {
       var registro;
       var indice;
       var registros = $localStorage.registros;
 
       for (var i = 0; i < registros.length; i++) {
-
-          if (registros[i].id == indiceRegistro) {
-              registro = registros[i];
-              indice = i;
-              break;
-          }
+        if (registros[i].id === indiceRegistro) {
+          registro = registros[i];
+          indice = i;
+          break;
+        }
       }
 
       var actividad = $localStorage.actividades[registro.idActividad];
@@ -199,16 +187,16 @@ angular.module('main')
       $localStorage.actividades[registro.idActividad].contador =
       $localStorage.actividades[registro.idActividad].contador - 1;
 
-        //Frecuencia actividad
+        // Frecuencia actividad
       var indiceActividad = $localStorage.etiquetasActividades.indexOf(actividad.nombre);
       $localStorage.frecuenciasActividades[indiceActividad] =
       $localStorage.frecuenciasActividades[indiceActividad] - 1;
 
-        //Frecuencia actividad mes
+        // Frecuencia actividad mes
       $localStorage.frecuenciasActividadesMes[fecha.getMonth()] =
       $localStorage.frecuenciasActividadesMes[fecha.getMonth()] - 1;
 
-        //Frecuencia actividad semana
+        // Frecuencia actividad semana
       $localStorage.frecuenciasActividadesSemana[fecha.getDay()] =
       $localStorage.frecuenciasActividadesSemana[fecha.getDay()] - 1;
 
@@ -228,7 +216,7 @@ angular.module('main')
         // Frecuencia horas
       $localStorage.frecuenciasTiempoHoras[indiceActividad] = tiempoActividad[0];
 
-        //Frecuencias minutos
+        // Frecuencias minutos
       $localStorage.frecuenciasTiempoMinutos[indiceActividad] =
       tiempoActividad[0] * 60 + tiempoActividad[1];
 
@@ -236,7 +224,7 @@ angular.module('main')
       $localStorage.estadosDeAnimo[registro.idEstadoDeAnimo].contador =
       $localStorage.estadosDeAnimo[registro.idEstadoDeAnimo].contador - 1;
 
-        //Frecuencia actividad
+        // Frecuencia actividad
       var indiceEstadoDeAnimo = $localStorage.etiquetasEstadosDeAnimo.indexOf(estadoDeAnimo.nombre);
       $localStorage.frecuenciasEstadosDeAnimo[indiceEstadoDeAnimo] =
       $localStorage.frecuenciasEstadosDeAnimo[indiceEstadoDeAnimo] - 1;
@@ -245,27 +233,26 @@ angular.module('main')
       var segundosEstadoDeAnimo = this.conversorTiempoASegundos(estadoDeAnimo.horas,
       estadoDeAnimo.minutos, estadoDeAnimo.segundos);
 
-      var tiempoActividad = this.conversorSegundosATiempo(segundosEstadoDeAnimo - segundosRegistro);
+      tiempoActividad = this.conversorSegundosATiempo(segundosEstadoDeAnimo - segundosRegistro);
 
       $localStorage.estadosDeAnimo[registro.idEstadoDeAnimo].horas = tiempoActividad[0];
       $localStorage.estadosDeAnimo[registro.idEstadoDeAnimo].minutos = tiempoActividad[1];
       $localStorage.estadosDeAnimo[registro.idEstadoDeAnimo].segundos = tiempoActividad[2];
 
       // Elimina del registro
-      $localStorage.registros.splice(indice,1);
-    }
+      $localStorage.registros.splice(indice, 1);
+    };
 
-    this.conversorTiempoASegundos = function(horas, minutos, segundos) {
+    this.conversorTiempoASegundos = function (horas, minutos, segundos) {
       var tiempo = horas * 3600 + minutos * 60 + segundos;
       return tiempo;
-    }
+    };
 
-    this.conversorSegundosATiempo = function(segundos) {
+    this.conversorSegundosATiempo = function (segundos) {
       var segundosTiempo = segundos % 60;
       var minutos = (segundos - segundosTiempo) / 60;
       var minutosTiempo = minutos % 60;
       var horasTiempo = (minutos - minutosTiempo) / 60;
       return [horasTiempo, minutosTiempo, segundosTiempo];
-    }
-
+    };
   });
