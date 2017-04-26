@@ -2,12 +2,13 @@
 
 ## Objetivos
 
-- Obtener estadísticas sobre las actividades que se realiza a diario.
- * Mayor actividad realizada
- * Tiempo dedicado a una actividad
- * Mayor actividad por día
- * Mayor actividad por mes
- * Estados de animo
+* Obtener estadísticas sobre las actividades que se realiza a diario.
+
+  * Mayor actividad realizada
+  * Tiempo dedicado a una actividad
+  * Mayor actividad por día
+  * Mayor actividad por mes
+  * Estados de animo
 
 ## Explicación
 
