@@ -29,8 +29,18 @@ npm install
 bower install
 ```
 
-Levantar proyecto en el navegador
+Generar los recursos de los iconos para ello debe haber dos archivos en:
+resources
+|-android
+  |-icon.png
+  |-splash.png
 
+Ejecutar
+```bash
+npx ionic@1.3.22 resources
+```
+
+Levantar proyecto en el navegador
 **Importante:** Puede existir problemas dado que usamos cordova y no funciona su api en el navegador
 ```bash
 gulp watch
@@ -45,6 +55,9 @@ Usar en emulador
 ```bash
 gulp --livereload "emulate android"
 ```
+
+Mas información de formas de ejecutar la aplicación en:
+[https://github.com/mwaylabs/generator-m-ionic/blob/master/docs/intro/quick_start.md](https://github.com/mwaylabs/generator-m-ionic/blob/master/docs/intro/quick_start.md)
 
 ## Licencia
 
