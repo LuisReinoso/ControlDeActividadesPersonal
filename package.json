@@ -65,5 +65,23 @@
         "proxyMapTo": "https://echo.getpostman.com"
       }
     ]
+  },
+  "dependencies": {
+    "cordova-android": "^6.2.1",
+    "de.appplant.cordova.plugin.local-notification": "~0.8.2dev",
+    "cordova-plugin-background-mode": "~0.7.2",
+    "cordova-plugin-file": "~4.3.2",
+    "cordova-plugin-splashscreen": "~4.0.2"
+  },
+  "cordova": {
+    "platforms": [
+      "android"
+    ],
+    "plugins": {
+      "de.appplant.cordova.plugin.local-notification": {},
+      "cordova-plugin-background-mode": {},
+      "cordova-plugin-file": {},
+      "cordova-plugin-splashscreen": {}
+    }
   }
 }
