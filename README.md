@@ -30,10 +30,12 @@ bower install
 ```
 
 Generar los recursos de los iconos para ello debe haber dos archivos en:
+```bash
 resources
 |-android
   |-icon.png
   |-splash.png
+```
 
 Ejecutar
 ```bash
